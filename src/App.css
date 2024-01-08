@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.content {
+  display: contents; /* Sử dụng flexbox để tự động điều chỉnh bố cục */
+  justify-content: flex-start; /* Hiển thị Phong (bảng) ở bên phải */
+  align-items: flex-start; /* Hiển thị Phong (bảng) ở phía trên */
+  padding-top: 50px; /* Đảm bảo Phong (bảng) không che phủ Header */
+  padding-left: 250px; /* Đảm bảo Phong (bảng) không bị che bởi Sidebar */
+}
+
+.input{
+  justify-content: flex-start; /* Hiển thị Phong (bảng) ở bên phải */
+  align-items: flex-start; /* Hiển thị Phong (bảng) ở phía trên */
+  margin-top: 20px; /* Đảm bảo Phong (bảng) không che phủ Header */
+  margin-left: 250px; /* Đảm bảo Phong (bảng) không bị che bởi Sidebar */
+}
