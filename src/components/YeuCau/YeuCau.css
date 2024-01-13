@@ -13,9 +13,51 @@ th, td {
     width: auto; /* Canh lề nội dung */
 }
 
+#tdPhone{
+    border: 1px solid #ddd; /* Viền cho mỗi ô */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền của ô */
+    text-align: center;
+    width: auto; /* Canh lề nội dung */
+    width: 5%;
+}
+
+#tdRoom{
+    border: 1px solid #ddd; /* Viền cho mỗi ô */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền của ô */
+    text-align: center;
+    width: auto; /* Canh lề nội dung */
+    width: 10%;
+}
+
+#tdAction{
+    border: 1px solid #ddd; /* Viền cho mỗi ô */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền của ô */
+    text-align: center;
+    width: auto; /* Canh lề nội dung */
+    width: 15%;
+}
+
 th {
     background-color: #f2f2f2; /* Màu nền cho ô tiêu đề */
     color: black; /* Màu chữ cho ô tiêu đề */
+}
+
+#thPhone{
+    background-color: #f2f2f2; /* Màu nền cho ô tiêu đề */
+    color: black; /* Màu chữ cho ô tiêu đề */
+    width: 5%;
+}
+
+#thRoom{
+    background-color: #f2f2f2; /* Màu nền cho ô tiêu đề */
+    color: black; /* Màu chữ cho ô tiêu đề */
+    width: 10%;
+}
+
+#thAction{
+    background-color: #f2f2f2; /* Màu nền cho ô tiêu đề */
+    color: black; /* Màu chữ cho ô tiêu đề */
+    width: 15%;
 }
 
 /* css cho button "Thêm" */
@@ -50,20 +92,20 @@ td:nth-child(3) {
     width: 25%; /* Chiều rộng cột description */
 }
 
-th:nth-child(4),
+/* th:nth-child(4),
 td:nth-child(4) {
-    width: 10%; /* Chiều rộng cột phone */
+    width: 10%;
 }
 
 th:nth-child(5),
 td:nth-child(5) {
-    width: 10%; /* Chiều rộng cột Room */
-}
+    width: 10%; 
+} */
 
-th:nth-child(7),
+/* th:nth-child(7),
 td:nth-child(7) {
-    width: 30%; /* Chiều rộng cột Action */
-}
+    width: 30%;
+} */
 
 
   

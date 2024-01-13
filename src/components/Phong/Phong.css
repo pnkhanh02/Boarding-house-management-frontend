@@ -6,7 +6,8 @@ table {
     margin-top: 50px;
 }
 
-th, td {
+th, 
+td {
     border: 1px solid #ddd; /* Viền cho mỗi ô */
     padding: 8px; /* Khoảng cách giữa nội dung và viền của ô */
     text-align: center;
@@ -69,4 +70,11 @@ th:nth-child(7),
 td:nth-child(7) {
     width: 30%; /* Chiều rộng cột Action */
 }
+#modal {
+    width: 500px;
+  }
+#modalHeader {
+text-align: center;
+}
+
 

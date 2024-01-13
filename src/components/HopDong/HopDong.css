@@ -12,10 +12,33 @@ th, td {
     text-align: center;
     width: auto; /* Canh lề nội dung */
 }
+#tdDeadline{
+    border: 1px solid #ddd; /* Viền cho mỗi ô */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền của ô */
+    text-align: center;
+    width: 5%; /* Canh lề nội dung */
+}
+
+#tdNumOfPeople{
+    border: 1px solid #ddd; /* Viền cho mỗi ô */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền của ô */
+    text-align: center;
+    width: 5%; /* Canh lề nội dung */
+}
 
 th {
     background-color: #f2f2f2; /* Màu nền cho ô tiêu đề */
     color: black; /* Màu chữ cho ô tiêu đề */
+}
+#thDeadline{
+    background-color: #f2f2f2; /* Màu nền cho ô tiêu đề */
+    color: black; /* Màu chữ cho ô tiêu đề */
+    width: 5%;
+}
+#thNumOfPeople{
+    background-color: #f2f2f2; /* Màu nền cho ô tiêu đề */
+    color: black; /* Màu chữ cho ô tiêu đề */
+    width: 5%;
 }
 
 /* css cho button "Thêm" */
@@ -45,24 +68,31 @@ td:nth-child(2) {
     width: 10%; /* Chiều rộng cột Name */
 }
 
-th:nth-child(3),
+/* th:nth-child(3),
 td:nth-child(3) {
-    width: 25%; /* Chiều rộng cột Deadline */
-}
+    width: 25%; 
+} */
 
-th:nth-child(4),
+/* th:nth-child(4),
 td:nth-child(4) {
-    width: 10%; /* Chiều rộng cột NumofPeople */
-}
+    width: 10%; 
+} */
 
-th:nth-child(5),
+/* th:nth-child(5),
 td:nth-child(5) {
-    width: 10%; /* Chiều rộng cột Room */
+    width: 10%; 
 }
 
 th:nth-child(7),
 td:nth-child(7) {
-    width: 30%; /* Chiều rộng cột Action */
+    width: 30%; 
+} */
+
+#modal {
+    width: 500px;
+  }
+#modalHeader {
+text-align: center;
 }
 
 

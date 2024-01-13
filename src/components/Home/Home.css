@@ -1,0 +1,43 @@
+#homePage{
+    margin-left: 230px;
+}
+.carousel-container {
+    position: relative;
+    width: 1300px;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .image-list {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .image {
+    width: 500px;
+    object-fit: cover;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .image.active {
+    border: 2px solid #007bff; 
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -8,7 +7,7 @@ import HopDong from './components/HopDong/HopDong';
 import YeuCau from './components/YeuCau/YeuCau';
 import BaoTri from './components/BaoTri/BaoTri';
 import TaiKhoan from './components/TaiKhoan/TaiKhoan';
-import Home from './components/Home/Home';
+import HomePage from "./components/Home/HomePage";
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
         <Sidebar />
         <div className="content">
           <Routes>
-            <Route path="/home" element={<Home />} />
+            <Route path="/homePage" element={<HomePage />} />
             <Route path="/baiDang" element={<Phong />} />
             <Route path="/hopDong" element={<HopDong />} />
             <Route path="/yeuCau" element={<YeuCau />} />

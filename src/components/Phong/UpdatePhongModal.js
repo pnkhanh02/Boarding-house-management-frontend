@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Form,
@@ -10,17 +10,27 @@ import {
   ModalFooter,
   ModalHeader,
 } from "reactstrap";
-import "./Phong.css";
-import { createPhongsAPI } from "../../APIs/PhongAPIs";
-function AddPhongModal(props) {
-  let { showAddModal, setShowAddModal, setPhongs, phongs } = props;
+import { editPhongAPI } from "../../APIs/PhongAPIs";
+
+function UpdatePhongModal(props) {
+  // Lấy dữ liệu từ Phong.js xuống:
+  let {
+    phongs,
+    setPhongs,
+    showUpdate,
+    setShowUpdate,
+    phongToUpdate,
+    setPhongToUpdate,
+  } = props;
+
   let [roomTitle, setRoomTitle] = useState("");
   let [address, setAddress] = useState("");
   let [area, setArea] = useState(1);
   let [price, setPrice] = useState(0);
   let [status, setStatus] = useState("AVAILABLE");
   let [url, setUrl] = useState("");
-  let phong = {
+  let phongUpdate = {
+    id: phongToUpdate.id,
     title: roomTitle,
     address: address,
     area: area,
@@ -28,26 +38,37 @@ function AddPhongModal(props) {
     status: status,
     imageUrl: url,
   };
-  const onClickadd = () => {
+  useEffect(() => {
+    setRoomTitle(phongToUpdate.title);
+    setAddress(phongToUpdate.address);
+    setArea(phongToUpdate.area);
+    setPrice(phongToUpdate.price);
+    setStatus(phongToUpdate.status);
+    setUrl(phongToUpdate.imageUrl);
+  }, [phongToUpdate]);
+  let clickUpdate = () => {
+    //Gọi api update, cập nhật lại biến phongs(bằng hàm setPhongs), đóng cửa sổ lại
     if (
       roomTitle.trim() !== "" &&
       address.trim() !== "" &&
       price > 0 &&
       url.trim() !== ""
     ) {
-      createPhongsAPI(phong).then((res) => {
-        setPhongs([...phongs, res]);
-        alert("Thêm mới thành công");
-        setShowAddModal(false);
+      editPhongAPI(phongUpdate).then((res) => {
+        let phongUpdates = phongs.map((p)=>p.id===res.id?res:p);
+        setPhongs([...phongUpdates]);
+        setShowUpdate(false);
+        alert("Update thành công");
       });
     } else {
       alert("Vui lòng nhập đủ thông tin!");
     }
   };
   return (
-    <Modal id="modal" isOpen={showAddModal} fade={false} >
-      <ModalHeader id="modalHeader">Thêm mới phòng</ModalHeader>
+    <Modal isOpen={showUpdate} fade={false}>
+      <ModalHeader>{`Sửa phòng ${phongToUpdate.title}`}</ModalHeader>
       <ModalBody>
+        {" "}
         <Form>
           <FormGroup>
             <Label>Tên phòng:</Label>
@@ -122,17 +143,11 @@ function AddPhongModal(props) {
         </Form>
       </ModalBody>
       <ModalFooter>
-        <Button onClick={onClickadd}>Thêm</Button>
-        <Button
-          onClick={() => {
-            setShowAddModal(false);
-          }}
-        >
-          Đóng
-        </Button>
+        <Button onClick={clickUpdate}>Sửa</Button>
+        <Button onClick={() => setShowUpdate(false)}>Huỷ</Button>
       </ModalFooter>
     </Modal>
   );
 }
 
-export default AddPhongModal;
+export default UpdatePhongModal;

@@ -1,100 +1,122 @@
-import React, { Component } from "react";
-import './TaiKhoan.css';
-import EditTaiKhoan from "./EditTaiKhoan";
+import React from "react";
+import "./TaiKhoan.css";
+import { useEffect, useState } from "react";
+import { getAllTaiKhoanAPI } from "../../APIs/TaiKhoanAPI";
 
-class TaiKhoan extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchData: "", // Dữ liệu tìm kiếm
-            data: [ // Dữ liệu mẫu cho bảng
-                { id: 1, username: "nguyenvana", name: "Nguyễn Văn A", phonenumber: "0123234345", role: "ADMIN", status: "ACTIVE" },
-                { id: 2, username: "nguyenvanb", name: "Nguyễn Văn B", phonenumber: "0223234344", role: "LANDLORD", status: "ACTIVE" },
-                { id: 3, username: "nguyenvanc", name: "Nguyễn Văn C", phonenumber: "0323234343", role: "LANDLORD", status: "ACTIVE" },
-                { id: 4, username: "nguyenvand", name: "Nguyễn Văn D", phonenumber: "0423234342", role: "CUSTOMER", status: "LOCKED" },
-                { id: 5, username: "nguyenvane", name: "Nguyễn Văn E", phonenumber: "0523234341", role: "CUSTOMER", status: "ACTIVE" },
-            ],
-            isAdding: false,
-            isEditing: false,
-            selectedItem: null, // Lưu thông tin item đang được chỉnh sửa
-        };
-    }
+function TaiKhoan(props) {
+  let [phongs, setPhongs] = useState([]);
+  let [taikhoans, setTaiKhoans] = useState([]);
+  let [searchTaiKhoan, setSearchTaiKhoan] = useState("");
+  let [showAddTaiKhoan, setShowAddTaiKhoan] = useState(false);
+  let [showDelTaiKhoan, setShowDelTaiKhoan] = useState(false);
+  let [showUpdateTaiKhoan, setShowUpdateTaiKhoan] = useState(false);
+  let [taikhoanToDelOrUpdate, setTaiKhoanToDelOrUpdate] = useState({
+    id: 0,
+    username: "..",
+  });
 
-    // Hàm xử lý thay đổi dữ liệu tìm kiếm
-    handleSearch = event => {
-        this.setState({ searchData: event.target.value });
-    };
+  useEffect(() => {
+    // getAllPhongsAPI().then((res) => {
+    //   setPhongs(res);
+    // });
+    getAllTaiKhoanAPI().then((res) => {
+      setTaiKhoans(res);
+    });
+  }, []);
 
-    // Hàm xử lý ẩn modal AddYeuCau khi click vào nút "Cancel"
-    // handleCancel = () => {
-    //     this.setState({ isAdding: false });
-    // };
+  let filteredData =
+    taikhoans && taikhoans.length > 0
+      ? taikhoans.filter((p) => p.username.includes(searchTaiKhoan))
+      : [
+          {
+            id: 0,
+            username: "Không tìm thấy",
+            name: "",
+            phoneNumber: 0,
+            role: "",
+            status: "",
+          },
+        ];
+  return(
+    <div>
+      {/* Thanh tìm kiếm */}
+      <input
+        className="input"
+        type="text"
+        placeholder="Search by username"
+        value={searchTaiKhoan}
+        onChange={(event) => {
+          setSearchTaiKhoan(event.target.value);
+        }}
+      />
 
-    // Hàm xử lý hiển thị modal EditYeuCau khi nhấn vào nút "Edit"
-    handleEditClick = item => {
-        this.setState({ isEditing: true, selectedItem: item });
-    };
+      <div className="button-container">
+        {/* Button "Thêm" */}
+        <button
+          onClick={() => {
+            setShowAddTaiKhoan(true);
+          }}
+          className="add-button"
+        >
+          Add
+        </button>
+      </div>
 
-    render() {
-        // Lọc dữ liệu dựa trên kết quả tìm kiếm
-        const filteredData = this.state.data.filter(item =>
-            item.username.toLowerCase().includes(this.state.searchData.toLowerCase())
-        );
-
-        return (
-            <div>
-                {/* Thanh tìm kiếm */}
-                <input 
-                    className="input"
-                    type="text"
-                    placeholder="Search by username"
-                    value={this.state.searchData}
-                    onChange={this.handleSearch}
-                />
-
-                <div className="button-container">
-                    {/* Button "Thêm" */}
-                    <button className="add-button">Add</button>
-                </div>
-
-                {/* Bảng hiển thị dữ liệu */}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Phone Number</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredData.map(item => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.username}</td>
-                                <td>{item.name}</td>
-                                <td>{item.phonenumber}</td>
-                                <td>{item.role}</td>
-                                <td>{item.status}</td>
-                                <td>
-                                    <button className="action-button" onClick={() => this.handleEditClick(item)}>Edit</button>
-                                    <button className="action-button">Delete</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                {/* Hiển thị modal EditYeuCau nếu trạng thái isEditing là true */}
-                {this.state.isEditing && (
-                    <EditTaiKhoan onCancel={() => this.setState({ isEditing: false })} item={this.state.selectedItem} />
-                )}
-            </div>
-        );
-    }
+      {/* Bảng hiển thị dữ liệu */}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Name</th>
+            <th>phoneNumber</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredData.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.username}</td>
+              <td>{item.name}</td>
+              <td>{item.phoneNumber}</td>
+              <td>{item.role}</td>
+              <td>{item.status}</td>
+              {/* <td id="tdRoom">
+                {item.room.title ? item.room.title : "phòng đã bị xoá"}
+              </td> */}
+              <td id="tdAction">
+                <button>
+                    View
+                </button>
+                <button
+                  onClick={() => {
+                    setTaiKhoanToDelOrUpdate(item); //set phòng để xoá là phòng ở dòng tương ứng
+                    setShowUpdateTaiKhoan(true); //mở cửa sổ xoá
+                  }}
+                  className="action-button"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => {
+                    setTaiKhoanToDelOrUpdate(item);
+                    setShowDelTaiKhoan(true);
+                  }}
+                  className="action-button"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      
+    </div>
+  );
 }
 
 export default TaiKhoan;
