@@ -106,6 +106,19 @@ td:nth-child(5) {
 td:nth-child(7) {
     width: 30%;
 } */
+/* Add these styles to your existing CSS file or create a new one */
+.pagination-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin as needed */
+    margin-right: 50px;
+  }
+  
+  .pagination-container button {
+    margin: 0 5px; /* Adjust margin as needed */
+  }
+
 
 
   

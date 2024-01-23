@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Sidebar from "../Sidebar/Sidebar";
+import Header from "../Header/Header";
 import "./Home.css";
 function HomePage(props) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,30 +28,34 @@ function HomePage(props) {
     );
   };
   return (
-    <div id="homePage" className="row">
-      <div style={{ textAlign: "center" }} className="row">
-        <h1>Trang chủ</h1>
-      </div>
+    <div>
+      <Header />
+      <Sidebar />
+      <div id="homePage" className="row">
+        <div style={{ textAlign: "center" }} className="row">
+          <h1>Trang chủ</h1>
+        </div>
 
-      <div className="row">
-        <div className="carousel-container">
-          <button className="carousel-button prev" onClick={prevSlide}>
-            ❮
-          </button>
-          <div className="image-list">
-            {images.map((image, index) => (
-              <img
-                key={index}
-                className={`image ${index === currentIndex ? "active" : ""}`}
-                src={image}
-                alt={`Image ${index + 1}`}
-                onClick={() => showSlide(index)}
-              />
-            ))}
+        <div className="row">
+          <div className="carousel-container">
+            <button className="carousel-button prev" onClick={prevSlide}>
+              ❮
+            </button>
+            <div className="image-list">
+              {images.map((image, index) => (
+                <img
+                  key={index}
+                  className={`image ${index === currentIndex ? "active" : ""}`}
+                  src={image}
+                  alt={`Image ${index + 1}`}
+                  onClick={() => showSlide(index)}
+                />
+              ))}
+            </div>
+            <button className="carousel-button next" onClick={nextSlide}>
+              ❯
+            </button>
           </div>
-          <button className="carousel-button next" onClick={nextSlide}>
-            ❯
-          </button>
         </div>
       </div>
     </div>

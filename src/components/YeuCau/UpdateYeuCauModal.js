@@ -47,9 +47,7 @@ function UpdateYeuCauModal(props) {
     setDescription(yeucauToUpdate.description);
     setPhone(yeucauToUpdate.phone);
     setRoomId(
-      yeucauToUpdate.room && yeucauToUpdate.room.id
-        ? yeucauToUpdate.room.id
-        : ""
+      yeucauToUpdate.roomId
     );
   }, [yeucauToUpdate]);
   let clickUpdateYeuCau = () => {
@@ -111,7 +109,7 @@ function UpdateYeuCauModal(props) {
               onChange={(event) => {
                 setRoomId(event.target.value);
               }}
-            >
+            ><option>---</option>
               {options}
             </Input>
           </FormGroup>

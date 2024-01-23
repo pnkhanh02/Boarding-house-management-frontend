@@ -14,7 +14,7 @@
   }
   
   .image {
-    width: 500px;
+    width: 450px;
     object-fit: cover;
     height: auto;
     cursor: pointer;

@@ -47,7 +47,7 @@ function AddPhongModal(props) {
   return (
     <Modal id="modal" isOpen={showAddModal} fade={false} >
       <ModalHeader id="modalHeader">Thêm mới phòng</ModalHeader>
-      <ModalBody>
+      <ModalBody style={{height:"500px",overflowY:"auto"}}>
         <Form>
           <FormGroup>
             <Label>Tên phòng:</Label>
@@ -118,6 +118,7 @@ function AddPhongModal(props) {
                 setUrl(event.target.value);
               }}
             ></Input>
+            <img style={{ marginTop:"20px",width:"460px" ,objectFit:"cover"}} alt="Lỗi tải ảnh" src={url}></img>
           </FormGroup>
         </Form>
       </ModalBody>

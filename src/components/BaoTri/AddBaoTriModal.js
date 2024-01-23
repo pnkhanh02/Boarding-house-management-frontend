@@ -36,7 +36,7 @@ function AddBaoTriModal(props) {
       maintenanceDate.trim() !== "" &&
       description.trim() !== "" &&
       price > 0 &&
-      room.trim() !== ""
+      room!==0
     ) {
       createBaoTriAPI(baotri).then((res) => {
         setBaoTris([...baotris, res]);
@@ -94,7 +94,7 @@ function AddBaoTriModal(props) {
               onChange={(event) => {
                 setRoom(event.target.value);
               }}
-            >{options}</Input>
+            ><option>---</option>{options}</Input>
           </FormGroup>
         </Form>
       </ModalBody>

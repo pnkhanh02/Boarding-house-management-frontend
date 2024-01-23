@@ -31,25 +31,26 @@ function UpdateHopDongModal(props) {
       : null;
   let [id, setId] = useState("");
   let [name, setName] = useState("");
-  let [deadline, setDeadline] = useState("");
+  let [startDate, setStartDate] = useState("");
+  let [endDate, setEndDate] = useState("");
   let [numOfPeople, setNumOfPeople] = useState(1);
   let [roomId, setRoomId] = useState(0);
   let hopdong = {
     id: id,
     name: name,
-    deadline: deadline,
+    startDate: startDate,
+    endDate: endDate,
     numOfPeople: numOfPeople,
     roomId: roomId,
   };
   useEffect(() => {
     setId(hopdongToUpdate.id);
     setName(hopdongToUpdate.name);
-    setDeadline(hopdongToUpdate.deadline);
+    setStartDate(hopdongToUpdate.startDate);
+    setEndDate(hopdongToUpdate.endDate);
     setNumOfPeople(hopdongToUpdate.numOfPeople);
     setRoomId(
-      hopdongToUpdate.room && hopdongToUpdate.room.id
-        ? hopdongToUpdate.room.id
-        : ""
+      hopdongToUpdate.roomId
     );
   }, [hopdongToUpdate]);
   let clickUpdateHopDong = () => {
@@ -81,13 +82,24 @@ function UpdateHopDongModal(props) {
             ></Input>
           </FormGroup>
           <FormGroup>
-            <Label>Deadline:</Label>
+            <Label>StartDate:</Label>
             <Input
-              placeholder="Nhập deadline..."
-              value={deadline}
+              placeholder="Nhập startDate..."
+              value={startDate}
               type="date"
               onChange={(event) => {
-                setDeadline(event.target.value);
+                setStartDate(event.target.value);
+              }}
+            ></Input>
+          </FormGroup>
+          <FormGroup>
+            <Label>EndDate:</Label>
+            <Input
+              placeholder="Nhập endDate..."
+              value={endDate}
+              type="date"
+              onChange={(event) => {
+                setEndDate(event.target.value);
               }}
             ></Input>
           </FormGroup>
@@ -111,7 +123,7 @@ function UpdateHopDongModal(props) {
               onChange={(event) => {
                 setRoomId(event.target.value);
               }}
-            >
+            ><option>---</option>
               {options}
             </Input>
           </FormGroup>

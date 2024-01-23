@@ -20,7 +20,7 @@ function DeleteBaoTriModal(props) {
     };
     return (
       <Modal isOpen={showDelBaoTri} fade={false}>
-        <ModalHeader>{`Bạn chắc chắn muốn xoá bảo trì ${baotriToDel.title}`}</ModalHeader>
+        <ModalHeader>{`Bạn chắc chắn muốn xoá bảo trì ${baotriToDel.maintenanceDate}`}</ModalHeader>
         <ModalFooter>
           <Button onClick={onClickDelBaoTri}>Xác nhận</Button>
           <Button

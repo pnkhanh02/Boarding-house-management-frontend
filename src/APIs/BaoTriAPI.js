@@ -1,7 +1,7 @@
 import { api } from "./APIs"
 
-export const getAllBaoTriAPI = ()=>{
-    return api("GET","baotri/getAll",null)
+export const getAllBaoTriAPI = (request)=>{
+    return api("POST","baotri/search",request)
 };
 export const createBaoTriAPI = (baotri) => {
     return api("POST", "baotri/create", baotri);
@@ -12,3 +12,6 @@ export const deleteBaoTriAPI = (id) => {
 export const editBaoTriAPI = (baotri) => {
     return api("PUT", `baotri/update`, baotri);
 };
+export const getNumberOfBaoTri= ()=>{
+    return api("GET","baotri/size",null)
+}

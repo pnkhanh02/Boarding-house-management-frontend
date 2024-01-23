@@ -37,7 +37,7 @@ function AddYeuCauModal(props) {
       title.trim() !== "" &&
       description.trim() !== "" &&
       phone > 0 &&
-      room.trim() !== ""
+      room !== 0
     ) {
       createYeuCauAPI(yeucau).then((res) => {
         setYeuCaus([...yeucaus, res]);
@@ -95,7 +95,7 @@ function AddYeuCauModal(props) {
               onChange={(event) => {
                 setRoom(event.target.value);
               }}
-            >{options}</Input>
+            ><option>---</option>{options}</Input>
           </FormGroup>
         </Form>
       </ModalBody>

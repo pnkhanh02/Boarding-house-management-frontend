@@ -47,9 +47,8 @@ function UpdateBaoTriModal(props) {
       setDescription(baotriToUpdate.description);
       setPrice(baotriToUpdate.price);
       setRoomId(
-        baotriToUpdate.room && baotriToUpdate.room.id
-          ? baotriToUpdate.room.id
-          : ""
+        baotriToUpdate.roomId
+          
       );
     }, [baotriToUpdate]);
     let clickUpdateBaoTri = () => {
@@ -65,7 +64,7 @@ function UpdateBaoTriModal(props) {
     };
     return (
       <Modal isOpen={showUpdateBaoTri} fade={false}>
-        <ModalHeader>{`Sửa bảo trì ${baotriToUpdate.title}`}</ModalHeader>
+        <ModalHeader>{`Sửa bảo trì ${baotriToUpdate.maintenanceDate}`}</ModalHeader>
         <ModalBody>
           {" "}
           <Form>
@@ -111,7 +110,7 @@ function UpdateBaoTriModal(props) {
                 onChange={(event) => {
                   setRoomId(event.target.value);
                 }}
-              >
+              ><option>---</option>
                 {options}
               </Input>
             </FormGroup>
